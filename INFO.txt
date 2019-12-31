@@ -1,0 +1,29 @@
+Technologies : Javascript & Crafty Js
+LAUNCH BY CLINCKING ON Machine.html (and keeping all the files)
+
+Objectives : creating a jackpot game with a basic income money and a plus and minus button. 
+You start with a basic wallet ("portefeuille" in french)
+You can play until you have no money left in the wallet. 
+You can't bet more than you have in your wallet. 
+There are three fruits : they roll once you bet and if all three are the same, 
+you win a three times the money you bent. 
+If two fruits are the same you win the  amount your bet. 
+If none are the same, you loose the money. 
+All this changes how much money you have in your wallet. 
+Once you have no money left, the game stops with a pop-up window
+telling you the game is over. And you can restart the game by acccepting it. 
+
+
+Technos: Javascript et Crafty Js
+LANCER EN CLIQUANT SUR machine.html (et en gardant tous les autres fichiers autour)
+
+Vous commencez avec une somme de base. 
+Pour jouer il faut parier. 
+Vous pouvez pariez plus ou moins à l'aide des buttons plus et moins.
+Vous ne pouvez pas parier plus que ce que vous avez dans votre portefeuille. 
+Une fois que vous lancez un pari, si les trois fruits sont similaires, 
+vous gagnez le triple de votre mise. Si deux d'entre eux le sont vous gagnez votre mise.
+Si aucun ne l'est vous perdez votre mise. 
+Le jeu s'arrête si votre portefeuille est vide.  Une fenêtre pop-up s'affiche alors. 
+En cliquant sur ok, vous relancez le jeu à zéro. 
+

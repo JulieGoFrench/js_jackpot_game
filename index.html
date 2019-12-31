@@ -1,0 +1,198 @@
+<html>
+  <head></head>
+
+    <div id="game"></div>
+
+    <script type="text/javascript" src="libs/cratfy.js"></script>
+    <script type="text/javascript" src="libs/jquery.js"></script>
+    <script type="text/javascript" src="app_tools/fruits.js"></script>
+    <script type="text/javascript" src="app_tools/money_functions.js"></script>
+    <script type="text/javascript" src="app_tools/timer.js"></script>
+    <script type="text/javascript" src="display.js"></script>
+
+
+	<script>
+
+    	
+      window.onload = function(){    
+
+        let boolEnd=true; 
+		let money =0; 	
+		let money_left =10; 
+        won = 0; 
+
+    
+        money_input= Crafty.e("2D, DOM, Color, Text").attr({ x: 240, y: 195}).text(money)
+        .textColor('black').textFont({ size: '2em', weight: 'bold' });
+
+         left= Crafty.e("2D, DOM, Color, Text").attr({ x: 300, y: 450}).text(money_left)
+        .textColor('red').textFont({ size: '2em', weight: 'bold' });
+
+        
+        money_output= Crafty.e("2D, DOM, Color, Text").attr({ x: 610, y: 470}).text(won)
+        .textColor('black').textFont({ size: '2em', weight: 'bold' });
+
+	var gamble_money = Crafty.e("2D, Canvas, Image, Mouse").attr({
+          x: 10,
+          y: 195,
+          w: 50,
+          h: 50
+      })
+          .image(plus_button)
+          .origin("center")
+          .bind('Click', function() {
+            if (boolEnd == true && money_left >0){                     
+            money= money+1;  
+            money_input.text(money).textFont({ size: '2em', weight: 'bold' });
+            won =0; 
+            money_output.text(won).textFont({ size: '2em', weight: 'bold' });  
+
+            }
+            else if (boolEnd == false && money_left >0 ){
+               money_input.text("still playing").textFont({ size: '0.8em', weight: 'bold' });  
+              
+            }
+            else {
+            
+             if(!alert('GAME OVER')){window.location.reload();}
+            }
+                   
+          
+           });
+
+          var gamble_less = Crafty.e("2D, Canvas, Image, Mouse").attr({
+          x: 10,
+          y: 280,
+          w: 60,
+          h: 60
+      })
+          .image(minus_button)
+          .origin("center")
+          .bind('Click', function() {
+            if (boolEnd == true && money >0) {
+              money = money-1; 
+              money_input.text(money).textFont({ size: '2em', weight: 'bold' });
+            }
+            else if (boolEnd == false && money >0)  {
+              money_input.text("still playing").textFont({ size: '0.8em', weight: 'bold' });
+            }
+            else 
+              money_input.text(0).textFont({ size: '2em', weight: 'bold' });
+
+          });
+
+
+        var start_to_play = Crafty.e("2D, Canvas, Image, Mouse").attr({
+          x: 402,
+          y: 490,
+          w: 60,
+          h: 60
+      })
+          .image(start_button)
+          .origin("center")
+          .bind('Click', function() {
+    
+            if (money >0 && money_left>=money && boolEnd == true){
+              boolEnd=false; 
+              val_one =random_numberO_to_5();
+              val_two =random_numberO_to_5();
+              val_three= random_numberO_to_5();
+              var counter = 6; var intervalId = null; 
+              function finish() {clearInterval(intervalId);}
+              function finish_b() {clearInterval(intervalId_b);}
+              function finish_c() {clearInterval(intervalId_c);}
+              money_output.text(won).textFont({ size:'2em', weight: 'bold' });
+
+              function bip() {
+                  counter--;
+                  if( counter == val_one ) {finish();}
+                  else {res = counter;image_one.image(fruit_images[counter]);}    
+                   }   
+              intervalId = setInterval(bip, 1000);                       
+
+           
+// 2 image
+              var counter_b = 6; var intervalId_b = null;   
+
+              function bip_b() {
+                  counter_b--;
+                  if( counter_b == val_two ) {
+                    finish_b();
+                  } 
+                  else {   
+                      res = counter; 
+                      image_two.image(fruit_images[counter_b]); 
+                   } 
+              } intervalId_b = setInterval(bip_b, 1000); 
+                       
+// 3 image
+              var counter_c = 6; var intervalId_c = null;              
+              
+              function bip_c() {
+                  counter_c--;
+                  if( counter_c == val_three ) {
+                    finish_c();
+                    boolC = 1;
+                  }
+                  else {   
+                      res = counter;
+                      image_three.image(fruit_images[counter_c]); 
+                   } 
+              } intervalId_c = setInterval(bip_c, 1000);
+
+
+                won = return_money(val_one, val_two, val_three, money);
+                 money_left = money_left -money + won;
+                
+
+                money= 0;   
+                  
+    
+              function youwin() {
+
+                money_input.text(money);   
+                  money_output.text(won).textFont({ size: '2em', weight: 'bold' }); 
+                    left.text(money_left);
+                    boolEnd=true; 
+                    
+                    if (money_left <1) {
+                    if(!alert('GAME OVER')){window.location.reload();}
+                    }
+                }
+
+          var x = setTimeout(youwin, 5000); 
+
+                }
+      else  {
+        if (money <=0)
+            money_output.text(" Il faut parier").textFont({ size: '0.8em', weight: 'bold' });
+
+        else 
+          if (money_left < money && money_left >0) {
+          money_output.text(" Pas assez d'argent ").textFont({ size: '0.8em', weight: 'bold' }); 
+        window.stop();
+        }
+      
+           
+
+      }
+
+                
+
+      });
+
+
+
+
+ 
+    }   
+
+
+
+    </script>
+
+<body >
+
+</body>
+  
+</html>
